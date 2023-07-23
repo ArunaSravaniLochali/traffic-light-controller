@@ -1,0 +1,29 @@
+module tb_trafficlight();
+reg clk,rst;
+wire[2:0]light_M1;
+wire[2:0]light_M2;
+wire[2:0]light_ST;
+wire[2:0]light_MT;
+wire[3:0]count;
+wire[2:0]ps;
+traffic_light dut_t1(
+                     .clk(clk),
+                     .rst(rst),
+                     .light_M1(light_M1),
+                     .light_M2(light_M2),
+                     .light_ST(light_ST),
+                     .light_MT(light_MT),
+                     .count(count),
+                     .ps(ps));
+initial begin
+clk = 1'b0;
+forever #5 clk = ~clk;
+end
+initial begin
+rst = 1'b1;
+#15;
+rst = 1'b0;
+#1000;
+$finish;
+end
+endmodule
